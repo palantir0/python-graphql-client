@@ -1,4 +1,6 @@
 from six.moves import urllib
+import certifi
+import ssl
 import json
 
 class GraphQLClient:
@@ -26,7 +28,8 @@ class GraphQLClient:
         req = urllib.request.Request(self.endpoint, json.dumps(data).encode('utf-8'), headers)
 
         try:
-            response = urllib.request.urlopen(req)
+            context = ssl.create_default_context(cafile=certifi.where())
+            response = urllib.request.urlopen(req, context=context)
             return response.read().decode('utf-8')
         except urllib.error.HTTPError as e:
             print((e.read()))
