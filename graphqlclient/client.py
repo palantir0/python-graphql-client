@@ -6,6 +6,7 @@ class GraphQLClient:
         self.endpoint = endpoint
         self.token = None
         self.headername = None
+        self.headersDict = None
 
     def execute(self, query, variables=None):
         return self._send(query, variables)
@@ -13,6 +14,9 @@ class GraphQLClient:
     def inject_token(self, token, headername='Authorization'):
         self.token = token
         self.headername = headername
+
+    def inject_headers(self, headersDict):
+        self.headersDict = headersDict
 
     def _send(self, query, variables):
         data = {'query': query,
@@ -22,6 +26,8 @@ class GraphQLClient:
 
         if self.token is not None:
             headers[self.headername] = '{}'.format(self.token)
+        if self.headersDict is not None:
+            headers.update(self.headersDict)
 
         req = urllib.request.Request(self.endpoint, json.dumps(data).encode('utf-8'), headers)
 
