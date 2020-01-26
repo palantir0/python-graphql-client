@@ -43,6 +43,13 @@ An alternative http header name for the token can be set by passing in the alter
 client.inject_token('very-long-and-secure-token','x-api-key')
 ```
 
+If you need more options for headers use
+
+```py
+client.inject_headers({'your_custom_header_name' : 'your_custom_header_value' ,
+                       'your_custom_header_name_2' :'your_custom_header_value_2'})
+```
+
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)
