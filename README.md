@@ -44,7 +44,9 @@ client.addHeader('very-long-and-secure-token','x-api-key')
 
 
 Note: there are different ways of specifying token so token maybe like these:
+	# this is the standard form
   addHeader('Bearer {}'.format(tokenStr)) or
+    # alternatives that I haven't used
   addHeader('token {}'.format(tokenStr))  there are others..
 ```
 
