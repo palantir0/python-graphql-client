@@ -28,7 +28,9 @@ Just comment those lines out and return some dummy strings, if that happens.
 
 def main():
     # assume a server is running at `localhost:8000`:
-    client = GraphQLClient('http://localhost:8000/')
+    url = 'http://localhost:8000/'
+    # or use this:  url = 'http://swapi.graph.cool/'
+    client = GraphQLClient(url)
 
     # the introspection query request below was copied from a playground in a browser
     # when running an adriadne server.
