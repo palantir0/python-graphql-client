@@ -14,6 +14,6 @@ setup(name='graphqlclient',
       license='MIT',
       packages=['graphqlclient'],
       install_requires=[
-          'six',
+          'requests',
       ],
       zip_safe=False)
