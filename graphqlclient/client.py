@@ -12,12 +12,13 @@ class GraphQLClient:
             'Content-Type': 'application/json'
         }
 
-
-    def execute(self, query, variables=None):
+    def execute(self, query, variables=None, operationName=None):
         """ Run query on graphql endpoint
         """
-        return post(self.endpoint, json=dict(query=query, variables=variables),
-                    headers=self.headers).json()
+        req = dict(query=query, variables=variables)
+        if operationName is not None:
+            req['operationName'] = operationName
+        return post(self.endpoint, json=req, headers=self.headers).json()
 
     def addHeader(self, name, value):
         """ Addition headers that are needed for calls
